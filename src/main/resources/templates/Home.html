@@ -7,9 +7,9 @@
     <title>Sticker generator</title>
   </head>
   <body>
-    <form action="#" th:action="@{/stickers}" th:object="${sticker}" method="post" enctype="multipart/form-data">
+    <form action="#" th:action="@{/}" th:object="${sticker}" method="post" enctype="multipart/form-data">
       <input placeholder="Image link" th:field="*{imageUrl}" />
-      <input placeholder="Sticker text" th:field="*{text}" />
+      <input placeholder="Sticker text" th:field="*{text}" required />
       <input type="file" th:field="*{file}" />
 
       <input type="submit" value="Generate" />
