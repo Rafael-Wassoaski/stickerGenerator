@@ -11,12 +11,16 @@
     <div class="d-flex justify-content-center">
       <form action="#" th:action="@{/stickers}" th:object="${sticker}" method="post" enctype="multipart/form-data">
         <div class="mb-3">
+          <label for="stickerText" class="form-label">Sticker text</label>
+          <input class="form-control" th:field="*{text}" required id="stickerText">
+        </div>
+
+        <div class="mb-3">
           <label for="imageLink" class="form-label">Image link</label>
           <input class="form-control" th:field="*{imageUrl}" id="imageLink" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
-          <label for="stickerText" class="form-label">Sticker text</label>
-          <input class="form-control" th:field="*{text}" required id="stickerText">
+          <p class="form-label">Or</label>
         </div>
         <div class="mb-3">
           <label for="formFile" class="form-label">File</label>
