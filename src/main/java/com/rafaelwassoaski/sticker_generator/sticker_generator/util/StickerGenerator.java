@@ -29,7 +29,7 @@ public class StickerGenerator {
         newImageGraphics.setColor(Color.YELLOW);
         newImageGraphics.drawString(bottomMsg, originalImageWidth / 2 - ((bottomMsg.length() / 2) * (52/2)), newImageHeight - 11);
 
-        String sanitizedFileName = "src/main/resources/public/images/" + sanitizeFileName(bottomMsg) + ".png" ;
+        String sanitizedFileName = "src/main/resources/" + sanitizeFileName(bottomMsg) + ".png" ;
         
         ImageIO.write(newImage, "png", new File(sanitizedFileName));
 
