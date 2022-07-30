@@ -20,7 +20,7 @@ import com.rafaelwassoaski.sticker_generator.sticker_generator.entity.Sticker;
 import com.rafaelwassoaski.sticker_generator.sticker_generator.services.StickerService;
 
 @Controller
-@RequestMapping("/stickers")
+@RequestMapping("")
 public class StickerController {
 
     @Autowired
