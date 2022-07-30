@@ -55,7 +55,7 @@ public class Sticker {
     public String generateSticker() throws MalformedURLException, IOException{
         InputStream iStream;
 
-        if(getText() != null && (getText().isBlank() || getText().isEmpty())){
+        if(getText() != null || getText().isEmpty()){
             throw new RestClientException("Campo de texto nao pode ser vazio");
         }
 
