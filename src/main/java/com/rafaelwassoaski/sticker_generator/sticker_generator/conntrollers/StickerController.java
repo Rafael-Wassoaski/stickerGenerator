@@ -38,23 +38,18 @@ public class StickerController {
 
     @PostMapping("")
     @ResponseBody
-    public ResponseEntity<InputStreamResource> generateSticker(@ModelAttribute Sticker sticker){
+    public ResponseEntity<InputStreamResource> generateSticker(@ModelAttribute Sticker sticker) throws FileNotFoundException {
 
-        try {
-            String stickerPath = service.generateSticker(sticker);
+        String stickerPath = service.generateSticker(sticker);
 
-            File file = new File(stickerPath);
-            InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-    
-            file.delete();
-    
-            return ResponseEntity.ok()
-                .contentLength(file.length())
-                .contentType(MediaType.IMAGE_PNG)
+        File file = new File(stickerPath);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        file.delete();
+
+        return ResponseEntity.ok().contentLength(file.length()).contentType(MediaType.IMAGE_PNG)
                 .body(resource);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-       
+
+
     }
 }

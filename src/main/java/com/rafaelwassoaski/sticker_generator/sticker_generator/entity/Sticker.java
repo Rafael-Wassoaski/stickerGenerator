@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.multipart.MultipartFile;
+import com.rafaelwassoaski.sticker_generator.sticker_generator.exceptions.TextToLargeException;
 import com.rafaelwassoaski.sticker_generator.sticker_generator.util.StickerGenerator;
 
 public class Sticker {
@@ -52,11 +53,15 @@ public class Sticker {
         this.text = text;
     }
 
-    public String generateSticker() throws MalformedURLException, IOException{
+    public String generateSticker() throws MalformedURLException, IOException, TextToLargeException{
         InputStream iStream;
 
+        if(text.length() > 20){
+            throw new TextToLargeException();
+        }
+
         if(getText() == null || getText().isEmpty()){
-            throw new RestClientException("Campo de texto nao pode ser vazio");
+            throw new RestClientException("Text field cannot be empty");
         }
 
         if(!getImageUrl().isEmpty() && getFile().isEmpty()){
