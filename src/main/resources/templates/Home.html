@@ -12,7 +12,7 @@
       <form action="#" th:action="@{/stickers}" th:object="${sticker}" method="post" enctype="multipart/form-data">
         <div class="mb-3">
           <label for="stickerText" class="form-label">Sticker text</label>
-          <input class="form-control" th:field="*{text}" required id="stickerText">
+          <input class="form-control" th:field="*{text}" maxlength="20" required id="stickerText">
         </div>
 
         <div class="mb-3">
