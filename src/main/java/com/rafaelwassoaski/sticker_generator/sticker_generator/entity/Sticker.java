@@ -56,12 +56,8 @@ public class Sticker {
     public String generateSticker() throws MalformedURLException, IOException, TextToLargeException{
         InputStream iStream;
 
-        if(text.length() > 20){
-            throw new TextToLargeException();
-        }
-
-        if(getText() == null || getText().isEmpty()){
-            throw new RestClientException("Text field cannot be empty");
+        if(getImageUrl().isEmpty() && getFile().isEmpty()){
+            throw new RestClientException("One image must be provided");
         }
 
         if(!getImageUrl().isEmpty() && getFile().isEmpty()){

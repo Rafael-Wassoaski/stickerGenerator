@@ -9,26 +9,40 @@
   </head>
   <body>
     <div class="d-flex justify-content-center">
-      <form action="#" th:action="@{/stickers}" th:object="${sticker}" method="post" enctype="multipart/form-data">
+      <form name="stickerForm" action="#" th:action="@{/stickers}" th:object="${sticker}" method="post" enctype="multipart/form-data">
         <div class="mb-3">
           <label for="stickerText" class="form-label">Sticker text</label>
-          <input class="form-control" th:field="*{text}" maxlength="20" required id="stickerText">
+          <input class="form-control" th:field="*{text}" maxlength="20" id="stickerText">
         </div>
 
         <div class="mb-3">
           <label for="imageLink" class="form-label">Image link</label>
-          <input class="form-control" th:field="*{imageUrl}" id="imageLink" aria-describedby="emailHelp">
+          <input name="link" class="form-control" th:field="*{imageUrl}" id="imageLink" aria-describedby="emailHelp" value="">
         </div>
         <div class="mb-3">
           <p class="form-label">Or</label>
         </div>
         <div class="mb-3">
           <label for="formFile" class="form-label">File</label>
-          <input class="form-control" th:field="*{file}" max-size="1048576" type="file" id="formFile">
+          <input name="file" class="form-control" th:field="*{file}" max-size="1048576" type="file" id="formFile" value="">
         </div>
-        <button type="submit" class="btn btn-primary">Generate</button>
+        <button type="button" class="btn btn-primary" onclick="validateAndSend()">Generate</button>
       </form>
     </div>
     
   </body>
+
+  <script>
+    function validateAndSend(){
+      const form = document.querySelector("form");
+      const inputs = document.querySelectorAll('input[name=file], input[id=imageLink]')
+
+      if(inputs[0].value == "" && inputs[1].value == "") {
+        alert('You have to enter at least one image or link to generate the sticker.');
+      }else {
+        form.submit();
+      }
+    }
+        
+</script>
 </html>
